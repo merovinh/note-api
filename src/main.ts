@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    // .addBearerAuth()
+    .addBearerAuth()
     .setTitle('Note App')
     .setDescription('The Note API')
     .setVersion('1.0')

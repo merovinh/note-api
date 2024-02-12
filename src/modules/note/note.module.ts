@@ -3,9 +3,13 @@ import { NoteController } from './note.controller';
 import { NoteService } from './note.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Note } from './note.entity';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Note])],
+  imports: [
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    TypeOrmModule.forFeature([Note]),
+  ],
   controllers: [NoteController],
   providers: [NoteService],
 })

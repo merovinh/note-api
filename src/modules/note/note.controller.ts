@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { NoteService } from './note.service';
 import { Note } from './note.entity';
@@ -14,14 +15,18 @@ import { UpdateNoteDto } from './dto/update-note.dto';
 import { CreateNoteDto } from './dto/create-note.dto';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Note')
+@ApiBearerAuth()
+@UseGuards(AuthGuard())
 @ApiUnauthorizedResponse({ description: 'Unauthorized' })
 @Controller('note')
 export class NoteController {
